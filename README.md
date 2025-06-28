@@ -126,25 +126,3 @@ const logger = new AvaLogger({
 logger.info("This is an info message");
 logger.debug("This debug message will not be shown because the log level is set to 'info'");
 ```
-
-With these options, you can fully customize AvaLogger to suit your needs.
-
-## Documentation
-
-Comprehensive documentation is coming soon! Stay tuned for detailed guides on:
-
-- **API Reference**
-- **Customizing Themes**
-- **Advanced Usage**
-
-## Contributing
-
-Contributions are welcome! If you’d like to contribute, please fork the repository and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
-
-Happy Logging! 🚀
