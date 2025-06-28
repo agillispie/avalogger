@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "build": "tsup",
+    "clean": "tsup --clean",
+    "dev": "tsup src/index.ts --watch",
+    "index": "npx tsx src/index.ts"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.6",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
