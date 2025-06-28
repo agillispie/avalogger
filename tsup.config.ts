@@ -4,7 +4,8 @@ export default defineConfig({
     entry: [
         'src/index.ts',
         'src/themes/index.ts',
-        'src/types/index.ts' // <== additional subpath
+        'src/types/index.ts',
+        'src/utils/index.ts',
     ],
     format: ['esm', 'cjs'],
     dts: true,

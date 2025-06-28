@@ -4,6 +4,8 @@ import { defaultTheme } from './themes';
 import { styleText, colorJson, LOG_LEVEL_RANK } from './utils';
 
 
+
+
 export class AvaLogger {
     private theme: FullLoggerTheme;
     private useColor: boolean;
@@ -105,5 +107,7 @@ export class AvaLogger {
 
 const logger = new AvaLogger();
 
-logger.log("yeet man")
-logger.shutdown("Shutting down gracefully...");
+
+
+const ava = new AvaLogger({
+})
