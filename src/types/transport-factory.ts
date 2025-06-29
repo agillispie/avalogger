@@ -9,3 +9,5 @@ type TransportFactory = (
         options: LoggerTransportOptions
     ) => void
 ) => LoggerTransport;
+
+export type { TransportFactory };
