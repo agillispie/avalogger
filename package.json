@@ -1,10 +1,18 @@
 {
   "name": "avalogger",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A simple, customizable logger for Node.js applications with theme support.",
   "publishConfig": {
     "access": "public"
   },
+  "keywords": [
+    "logger",
+    "logging",
+    "nodejs",
+    "typescript",
+    "customizable",
+    "themes"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
