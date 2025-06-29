@@ -96,15 +96,88 @@ const logger = new AvaLogger({ theme: myTheme });
 logger.log("This is a log message with my custom theme");
 ```
 
+## Creating Custom Themes with RGB Customizer
+
+AvaLogger allows you to create custom themes using RGB values for precise color customization. Here's how you can do it:
+
+### Using the RGB Customizer
+
+1. **Generate ANSI Codes**: Use the `generateAnsiFromRgb` utility to create ANSI escape codes for your desired RGB colors.
+
+```typescript
+import { generateAnsiFromRgb } from 'avalogger';
+
+const myTheme = {
+  log: { foreground: generateAnsiFromRgb(0, 128, 255) }, // Blue text
+  info: { foreground: generateAnsiFromRgb(0, 255, 0) },  // Green text
+  warn: { foreground: generateAnsiFromRgb(255, 255, 0) }, // Yellow text
+  error: { foreground: generateAnsiFromRgb(255, 0, 0) }, // Red text
+  fatal: { foreground: generateAnsiFromRgb(255, 255, 255), background: generateAnsiFromRgb(128, 0, 0) }, // White on dark red
+};
+
+export default myTheme;
+```
+
+2. **Apply the Theme**: Import and use your custom theme as shown in the earlier example.
+
+```typescript
+import { AvaLogger } from 'avalogger';
+import myTheme from './themes/my-theme';
+
+const logger = new AvaLogger({ theme: myTheme });
+logger.log("This is a log message with my custom RGB theme");
+```
+
+## Creating Custom Transports
+
+AvaLogger supports custom transports for logging to different destinations. Here's how you can create one:
+
+### Example: Custom HTTP Transport
+
+1. **Define the Transport**: Create a function that implements the `LoggerTransport` interface.
+
+```typescript
+import { LoggerTransport, transportFactory } from 'avalogger';
+import axios from 'axios';
+
+function HttpTransport(endpoint: string): LoggerTransport {
+  return transportFactory(
+    { useColor: false },
+    async (level, message, _args, _opts) => {
+      await axios.post(endpoint, { level, message });
+    }
+  );
+}
+
+export default HttpTransport;
+```
+
+2. **Use the Transport**: Add the custom transport to the `AvaLogger` instance.
+
+```typescript
+import { AvaLogger } from 'avalogger';
+import HttpTransport from './transports/http-transport';
+
+const logger = new AvaLogger({
+  transports: [HttpTransport('https://example.com/logs')],
+});
+
+logger.info("This message will be sent to the HTTP endpoint");
+```
+
 ## Configuration
 
 AvaLogger provides a flexible configuration system to customize its behavior. You can pass an options object to the `AvaLogger` constructor.
 
 ### Available Options
 
-- **theme**: The theme to use for logging. Accepts a `FullLoggerTheme` object.
-- **logLevel**: The minimum log level to display. Messages below this level will be ignored.
-- **jsonColorTheme**: Customize how JSON objects are styled when logged.
+- **theme**: The theme to use for logging. Accepts a `FullLoggerTheme` object. If not provided, the default theme is used.
+- **disableColor**: A boolean to disable colored output. Defaults to `false`.
+- **showTimestamp**: A boolean to include timestamps in log messages. Defaults to `true`.
+- **disableTimestamp**: A boolean to disable timestamps in log messages. Defaults to `false`.
+- **minLevel**: The minimum log level to display. Messages below this level will be ignored. Defaults to `'debug'`.
+- **enabledLevels**: An array of log levels to enable. If not provided, all levels defined in the theme are enabled.
+- **transports**: An array of custom transports to use for logging. If not provided, logs are output to the console.
 
 ### Example Configuration
 
@@ -113,14 +186,13 @@ import { AvaLogger } from 'avalogger';
 import myTheme from './themes/my-theme';
 
 const logger = new AvaLogger({
-  theme: myTheme,
-  logLevel: 'info',
-  jsonColorTheme: {
-    key: 'cyan',
-    value: 'magenta',
-    string: 'green',
-    number: 'yellow',
-  },
+  theme: myTheme, // Custom theme
+  disableColor: false, // Enable colored output
+  showTimestamp: true, // Include timestamps
+  disableTimestamp: false, // Do not disable timestamps
+  minLevel: 'info', // Only log 'info' and higher levels
+  enabledLevels: ['info', 'warn', 'error'], // Enable specific levels
+  transports: [], // Use default console transport
 });
 
 logger.info("This is an info message");
