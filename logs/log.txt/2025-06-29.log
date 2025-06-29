@@ -1,0 +1,7 @@
+[2025-06-29T02:58:30.939Z] DEBUG This is a debug message
+[38;5;208m[2025-06-29T03:08:11.214Z][0m [45m[97mDEBUG[0m [37mThis is a debug message[0m
+[38;5;208m[2025-06-29T03:09:55.312Z][0m [45m[97mDEBUG[0m [37mThis is a debug message[0m
+[2025-06-29T03:12:59.286Z] DEBUG This is a debug message
+[2025-06-29T03:15:17.799Z] DEBUG This is a debug message
+[2025-06-29T03:16:42.363Z] DEBUG This is a debug message
+[2025-06-29T03:16:42.364Z] INFO This is a standard log message

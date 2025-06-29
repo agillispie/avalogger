@@ -1,5 +1,4 @@
-import { FullLoggerTheme } from "./full-logger-theme";
-import { LogLevel } from "./log-level";
+import type { FullLoggerTheme, LogLevel, LoggerTransport } from "./index";
 
 interface LoggerOptions {
     theme?: Partial<FullLoggerTheme>;
@@ -8,6 +7,7 @@ interface LoggerOptions {
     disableTimestamp?: boolean;
     minLevel?: LogLevel;
     enabledLevels?: LogLevel[];
+    transports?: LoggerTransport[];
 }
 
 export type { LoggerOptions };

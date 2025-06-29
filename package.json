@@ -1,6 +1,6 @@
 {
   "name": "avalogger",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A simple, customizable logger for Node.js applications with theme support.",
   "publishConfig": {
     "access": "public"
@@ -35,6 +35,10 @@
     "./types": {
       "import": "./dist/types/index.js",
       "require": "./dist/types/index.cjs"
+    },
+    "./transports": {
+      "import": "./dist/transports/index.js",
+      "require": "./dist/transports/index.cjs"
     }
   },
   "typesVersions": {

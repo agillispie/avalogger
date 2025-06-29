@@ -6,6 +6,7 @@ export default defineConfig({
         'src/themes/index.ts',
         'src/types/index.ts',
         'src/utils/index.ts',
+        'src/transports/index.ts'
     ],
     format: ['esm', 'cjs'],
     dts: true,
